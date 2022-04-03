@@ -5,6 +5,8 @@ const DbContext = require("../services/db-context");
 const database = new DbContext();
 database.useCollection("applications.json");
 
+const isValidData = require("../utils/utils").isValidData;
+
 router.get("/", (req, res) => {
     database.getAll(
         (tasks) =>
@@ -21,7 +23,27 @@ router.get("/", (req, res) => {
     );
 });
 
-router.get("/:id", (req, res) => {
+router.get("/create", (req, res) => {
+    res.render("create_task", { title: "New Application Form" });
+});
+
+router.post("/create", (req, res) => {
+    if (isValidData(req.body)) {
+        const date = new Date().toLocaleString();
+        database.saveOne(req.body, date, () =>
+            res.render("create_task", { success: true })
+        );
+    } else {
+        res.render("create_task", { success: false });
+    }
+});
+
+router.get("/delete/:id", (req, res) => {
+    database.deleteOne(req.params.id, () => res.redirect("/tasks")),
+        () => res.sendStatus(500);
+});
+
+router.get("/one/:id", (req, res) => {
     database.getOne(
         req.params.id,
         (task) =>
@@ -29,5 +51,6 @@ router.get("/:id", (req, res) => {
         () => res.sendStatus(404)
     );
 });
+
 
 module.exports = router;

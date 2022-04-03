@@ -13,5 +13,5 @@ html(lang="en")
             ul.tasks
                 each task in tasks
                     li
-                        a(href=`tasks/${ task.id }`)= task.topic
+                        a(href=`/tasks/one/${ task.id }`)= task.topic
 
