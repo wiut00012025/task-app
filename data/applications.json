@@ -6,6 +6,7 @@
         "phoneNumber": "998981111111",
         "topic": "Problem with the internet",
         "description": "",
+        "date": "2022-04-04T00:00:00.000Z",
         "solved": false
     },
     {
@@ -15,6 +16,7 @@
         "phoneNumber": "998981111111",
         "topic": "Problem with the Intranet",
         "description": "",
+        "date": "2022-04-04T00:00:00.000Z",
         "solved": false
     },
     {
@@ -23,7 +25,8 @@
         "email": "wiut00012025@gmail.com",
         "phoneNumber": "998981111111",
         "topic": "Problem with the web technologies",
-        "description": "",
+        "description": "",        
+        "date": "2022-04-04T00:00:00.000Z",
         "solved": true
     }
 ]
