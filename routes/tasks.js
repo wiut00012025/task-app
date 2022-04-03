@@ -21,4 +21,13 @@ router.get("/", (req, res) => {
     );
 });
 
+router.get("/:id", (req, res) => {
+    database.getOne(
+        req.params.id,
+        (task) =>
+            res.render("single_task", { title: `${task.topic}`, task: task }),
+        () => res.sendStatus(404)
+    );
+});
+
 module.exports = router;

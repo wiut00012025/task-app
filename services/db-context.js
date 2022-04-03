@@ -28,7 +28,8 @@ class DbContext {
 
             const tasks = JSON.parse(data);
             const task = tasks.filter((task) => task.id == id)[0];
-            successMsg(task);
+            if (task == null) errorMsg();
+            else successMsg(task);
         });
     }
 
@@ -47,6 +48,7 @@ class DbContext {
 
             const tasks = JSON.parse(data);
             const validTasks = tasks.filter((task) => task.solved != true);
+            if (validTasks.length == 0) errorMsg();
             successMsg(validTasks);
         });
     }
@@ -57,6 +59,7 @@ class DbContext {
 
             const tasks = JSON.parse(data);
             const validTasks = tasks.filter((task) => task.solved == true);
+            if (validTasks.length == 0) errorMsg();
             successMsg(validTasks);
         });
     }
