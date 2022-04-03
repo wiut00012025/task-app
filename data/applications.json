@@ -1,0 +1,29 @@
+[
+    {
+        "id": "_43df23",
+        "name": "Akmaljon Samandarov",
+        "email": "wiut00012025@gmail.com",
+        "phoneNumber": "998981111111",
+        "topic": "Problem with the internet",
+        "description": "",
+        "solved": false
+    },
+    {
+        "id": "_43df13",
+        "name": "Akmaljon Samandarov",
+        "email": "wiut00012025@gmail.com",
+        "phoneNumber": "998981111111",
+        "topic": "Problem with the Intranet",
+        "description": "",
+        "solved": false
+    },
+    {
+        "id": "_43df63",
+        "name": "Akmaljon Samandarov",
+        "email": "wiut00012025@gmail.com",
+        "phoneNumber": "998981111111",
+        "topic": "Problem with the web technologies",
+        "description": "",
+        "solved": true
+    }
+]
