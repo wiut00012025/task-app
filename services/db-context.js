@@ -5,82 +5,100 @@ const generateID = require("../utils/utils").generateID;
 const root = require("../utils/utils").root;
 
 class DbContext {
-  constructor() {
-    this.collection = null;
-  }
+    constructor() {
+        this.collection = null;
+    }
 
-  useCollection(collection = "") {
-    this.collection = path.join(root, `data/${collection}`);
-  }
+    useCollection(collection = "") {
+        this.collection = path.join(root, `data/${collection}`);
+    }
 
-  getOne(id, successMsg, errorMsg) {
-    fs.readFile(this.collection, "utf8", (err, data) => {
-      if (err) errorMsg();
+    getJsonFile(req, res) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) throw err;
 
-      const tasks = JSON.parse(data);
-      const task = tasks.filter((task) => task.id == id)[0];
-      successMsg(task);
-    });
-  }
+            const tasks = JSON.parse(data);
+            res.json(tasks);
+        });
+    }
 
-  getUnsolved(successMsg, errorMsg) {
-    fs.readFile(this.collection, "utf8", (err, data) => {
-      if (err) errorMsg();
+    getOne(id, successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
 
-      const tasks = JSON.parse(data);
-      const validTasks = tasks.filter((task) => task.solved != true);
-      successMsg(validTasks);
-    });
-  }
+            const tasks = JSON.parse(data);
+            const task = tasks.filter((task) => task.id == id)[0];
+            successMsg(task);
+        });
+    }
 
-  getSolved(successMsg, errorMsg) {
-    fs.readFile(this.collection, "utf8", (err, data) => {
-      if (err) errorMsg();
+    getAll(successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
 
-      const tasks = JSON.parse(data);
-      const validTasks = tasks.filter((task) => task.solved == true);
-      successMsg(validTasks);
-    });
-  }
+            const tasks = JSON.parse(data);
+            successMsg(tasks);
+        });
+    }
 
-  saveOne(newTask, date, successMsg, errorMsg) {
-    fs.readFile(this.collection, "utf8", (err, data) => {
-      if (err) errorMsg();
+    getUnsolved(successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
 
-      const tasks = JSON.parse(data);
+            const tasks = JSON.parse(data);
+            const validTasks = tasks.filter((task) => task.solved != true);
+            successMsg(validTasks);
+        });
+    }
 
-      tasks.push({
-        id: generateID(),
-        name: newTask.name,
-        email: newTask.email,
-        phoneNumber: newTask.phoneNumber,
-        topic: newTask.topic,
-        description: newTask.description,
-        date: date,
-        solved: false,
-      });
+    getSolved(successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
 
-      fs.writeFile(this.collection, JSON.stringify(tasks), (err) => {
-        if (err) errorMsg();
-        successMsg();
-      });
-    });
-  }
+            const tasks = JSON.parse(data);
+            const validTasks = tasks.filter((task) => task.solved == true);
+            successMsg(validTasks);
+        });
+    }
 
-  deleteOne(id, successMsg, errorMsg) {
-    fs.readFile(this.collection, "utf8", (err, data) => {
-      if (err) errorMsg();
+    saveOne(newTask, date, successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
 
-      const tasks = JSON.parse(data);
+            const tasks = JSON.parse(data);
 
-      const filtered = tasks.filter((task) => task.id != id) || [];
+            tasks.push({
+                id: generateID(),
+                name: newTask.name,
+                email: newTask.email,
+                phoneNumber: newTask.phoneNumber,
+                topic: newTask.topic,
+                description: newTask.description,
+                date: date,
+                solved: false,
+            });
 
-      fs.writeFile(this.collection, JSON.stringify(filtered), (err) => {
-        if (err) errorMsg();
-        successMsg();
-      });
-    });
-  }
+            fs.writeFile(this.collection, JSON.stringify(tasks), (err) => {
+                if (err) errorMsg();
+                successMsg();
+            });
+        });
+    }
+
+    deleteOne(id, successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
+
+            const tasks = JSON.parse(data);
+
+            const filtered = tasks.filter((task) => task.id != id) || [];
+
+            fs.writeFile(this.collection, JSON.stringify(filtered), (err) => {
+                if (err) errorMsg();
+                successMsg();
+            });
+        });
+    }
 }
 
 module.exports = DbContext;
