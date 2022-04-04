@@ -4,7 +4,10 @@
     "description": "This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "glitch:pack": "node glitch.js",
+        "glitch:unpack": "unzip -o glitch_release_*.zip -d . && rm glitch_release_*.zip && refresh"
     },
     "repository": {
         "type": "git",
@@ -17,8 +20,11 @@
     },
     "homepage": "https://github.com/wiut00012025/task-app#readme",
     "dependencies": {
+        "archiver": "^5.3.0",
         "body-parser": "^1.20.0",
         "express": "^4.17.3",
-        "pug": "^3.0.2"
+        "pug": "^3.0.2",
+        "fastify": "^3.27.4",
+        "fastify-static": "^4.6.1"
     }
 }
