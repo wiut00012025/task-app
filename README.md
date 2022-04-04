@@ -13,8 +13,8 @@ Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
 // Initialize npm
 npm init
 
-// Download dependencies: express, pug, body-parser
-npm i express pug body-parser
+// Download dependencies: archiver, express, pug, body-parser, fastify and fastify-static
+npm install archiver express pug body-parser fastify fastify-static
 ```
 
 ## Usage
@@ -22,3 +22,12 @@ npm i express pug body-parser
 ```javascript
 node app.js
 ```
+
+## Source Code
+
+The source code is available in GitHub via this link: https://github.com/wiut00012025/task-app
+
+## Live Demo
+
+The project is hosted in Glitch and can be accessed from here: https://desert-splendid-shelf.glitch.me/
+
