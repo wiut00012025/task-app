@@ -43,3 +43,22 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+function submitForm() {
+    // Get the first form with the name
+    // Hopefully there is only one, but there are more, select the correct index
+    var form = document.getElementById('applicationForm');
+    
+    //validate form
+    var name = form.elements['name'].value;
+    var phoneNumber = form.elements['phoneNumber'].value;
+    var topic = form.elements['topic'].value;
+    if (name == '' || phoneNumber == '' || topic == '') {
+        alert('Please fill out all fields');
+        return;
+    }
+
+    form.submit(); // Submit
+    form.reset();  // Reset
+    // return false; // Prevent page refresh
+ }

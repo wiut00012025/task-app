@@ -1,23 +1,48 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width", initial-scale="1.0")
-    title= title
-    link(rel='stylesheet', href='/styles/styles.css')
- 
-  body
-    if success
-      p Your application is successfully received!
-    else
-      p Please, fill up all the fields
+extends layout.pug 
 
-    form(method="POST")
-        input(type="text", name="name", placeholder="Name")
-        input(type="text", name="email", placeholder="Email")
-        input(type="text", name="phoneNumber", placeholder="Phone Number")
+block content
+    .row.justify-content-center
+        .col-lg-8.col-xl-7
+            h2.page-section-heading.text-center.text-uppercase.text-primary New Application
 
-        input(type="text", name="topic", placeholder="Topic")
-        input(type="text", name="description", placeholder="Description")
-        input(type="submit", value="Add")
+            form#applicationForm(method="POST")
+                if success
+                    #submitSuccessMessage
+                        .text-center.text-info.mb-3
+                            .fw-bolder Form submitted successfully!
+                else
+                    #submitErrorMessage
+                        .text-center.text-danger.mb-3 Please fill all required fields.
+
+                // Name input
+                .form-floating.mb-3
+                    input#name.form-control(type='text' name="name" required=true)
+                    label(for='name') Full name*
+
+                // Email address input
+                .form-floating.mb-3
+                    input#email.form-control(type='text' name="email")
+                    label(for='email') Email address
+
+                // Phone number input
+                .form-floating.mb-3
+                    input#phoneNumber.form-control(type='text' name="phoneNumber" required=true)
+                    label(for='phoneNumber') Phone number*
+                    .invalid-feedback(data-sb-feedback='phone:required') A phone number is required.
+
+                // Topic input
+                .form-floating.mb-3
+                    input#topic.form-control(type='text' name="topic" required=true)
+                    label(for='topic') Issue Topic*
+
+
+                // Description input
+                .form-floating.mb-3
+                    textarea#description.form-control(type='text' name="description" style='height: 8rem')
+                    label(for='description') Issue Description
+
+                input#submit.btn.btn-primary.btn-xl(type='submit' onclick="submitForm()") 
+    script.
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
