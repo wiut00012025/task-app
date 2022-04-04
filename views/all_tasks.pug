@@ -1,17 +1,17 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible" content="IE=edge")
-        meta(name="viewport" content="width=device-width" initial-scale="1.0")
-        title= title
-        link(rel='stylesheet' href='/styles/styles.css')
+extends layout.pug 
 
-    body
-        h1= title 
+block content
+    .row.justify-content-center
+        h2.page-section-heading.text-center.text-uppercase.text-primary=title 
+
         if tasks.length
-            ul.tasks
+            ul.list-group.tasks.mt-5.col-6
                 each task in tasks
-                    li
-                        a(href=`/tasks/one/${ task.id }`)= task.topic
+                    li.list-group-item.list-group-item-action.d-flex.justify-content-center
+                        a(href=`/tasks/one/${ task.id }`)
+                            if task.solved 
+                                button.btn.btn-outline-primary.p-2= task.topic
+                            else 
+                                button.btn.btn-outline-danger.p-2= task.topic
+                    
 
