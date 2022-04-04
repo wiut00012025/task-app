@@ -23,6 +23,38 @@ router.get("/", (req, res) => {
     );
 });
 
+router.get("/solved", (req, res) => {
+    database.getSolved(
+        (tasks) =>
+            res.render(
+                "all_tasks", {
+                title: "List of All Solved Tasks",
+                tasks: tasks
+            }),
+        () =>
+            res.render("all_tasks", {
+                title: "List of All Solved Tasks",
+                tasks: null
+            })
+    );
+});
+
+router.get("/unsolved", (req, res) => {
+    database.getUnsolved(
+        (tasks) =>
+            res.render(
+                "all_tasks", {
+                title: "List of All Unsolved Tasks",
+                tasks: tasks
+            }),
+        () =>
+            res.render("all_tasks", {
+                title: "List of All Unsolved Tasks",
+                tasks: null
+            })
+    );
+});
+
 router.get("/create", (req, res) => {
     res.render("create_task", { title: "New Application Form" });
 });
@@ -36,6 +68,12 @@ router.post("/create", (req, res) => {
     } else {
         res.render("create_task", { success: false });
     }
+});
+
+router.get("/changeStatus/:id", (req, res) => {
+    id = req.params.id;
+    database.changeStatus(id, () => res.redirect("/tasks"),
+        () => res.redirect("/tasks"));
 });
 
 router.get("/delete/:id", (req, res) => {

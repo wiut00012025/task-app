@@ -71,7 +71,7 @@ class DbContext {
             const tasks = JSON.parse(data);
 
             tasks.push({
-                id: generateID(),
+                id: newTask.id == null ? generateID() : newTask.id,
                 name: newTask.name,
                 email: newTask.email,
                 phoneNumber: newTask.phoneNumber,
@@ -102,6 +102,28 @@ class DbContext {
             });
         });
     }
+
+    changeStatus(id, successMsg, errorMsg) {
+        fs.readFile(this.collection, "utf8", (err, data) => {
+            if (err) errorMsg();
+
+            const tasks = JSON.parse(data);
+            const task = tasks.filter(task => task.id == id)[0];
+            var taskFilter;
+            if (task.solved) {
+                task.solved = false;
+                taskFilter = tasks.filter(task => task.solved == true);
+            } else {
+                task.solved = true;
+                taskFilter = tasks.filter(task => task.solved == false);
+            }
+            fs.writeFile(this.collection, JSON.stringify(tasks), err => {
+                if (err) errorMsg();
+                successMsg();
+            })
+        })
+    }
+
 }
 
 module.exports = DbContext;
