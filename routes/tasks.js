@@ -72,8 +72,8 @@ router.post("/create", (req, res) => {
 
 router.get("/changeStatus/:id", (req, res) => {
     id = req.params.id;
-    database.changeStatus(id, () => res.redirect("/tasks"),
-        () => res.redirect("/tasks"));
+    database.changeStatus(id, () => res.redirect("/tasks/one/" + id)),
+        () => res.sendStatus(500);
 });
 
 router.get("/delete/:id", (req, res) => {

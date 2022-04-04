@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const tasks = require("./routes/tasks");
 
 // serving static files
-app.use(express.static("public"));
+app.use('/static', express.static('public'))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

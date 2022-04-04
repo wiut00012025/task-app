@@ -1,24 +1,24 @@
 {
-  "name": "task-app",
-  "version": "1.0.0",
-  "description": "This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wiut00012025/task-app.git"
-  },
-  "author": "Akmaljon Samandarov",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wiut00012025/task-app/issues"
-  },
-  "homepage": "https://github.com/wiut00012025/task-app#readme",
-  "dependencies": {
-    "body-parser": "^1.20.0",
-    "express": "^4.17.3",
-    "pug": "^3.0.2"
-  }
+    "name": "task-app",
+    "version": "1.0.0",
+    "description": "This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wiut00012025/task-app.git"
+    },
+    "author": "Akmaljon Samandarov",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wiut00012025/task-app/issues"
+    },
+    "homepage": "https://github.com/wiut00012025/task-app#readme",
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "express": "^4.17.3",
+        "pug": "^3.0.2"
+    }
 }

@@ -1,12 +1,18 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible" content="IE=edge")
-        meta(name="viewport" content="width=device-width" initial-scale="1.0")
-        title= title
-        link(rel='stylesheet' href='/styles/styles.css')
+extends layout.pug 
 
-    body
-        h1 Hello World
-        h2= title 
+block content
+    // About Section Heading
+    h2.page-section-heading.text-center.text-uppercase.text-primary About
+    // About Section Content
+    .row
+        .col-lg-4.ms-auto
+            p.lead
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam inventore esse laborum! Assumenda harum, architecto deserunt praesentium accusamus molestias nam sequi quos id quibusdam?
+        .col-lg-4.me-auto
+            p.lead
+            | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam eligendi deleniti consequuntur maxime amet? Totam in exercitationem est incidunt, veritatis tempore perferendis neque hic!
+    // About Section Button
+    .text-center.mt-4
+        a.btn.btn-xl.btn-primary(href='/tasks/create')
+            i.fas.fa-download.me-2
+            |                         Leave Application
