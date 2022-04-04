@@ -25,7 +25,7 @@ app.set("view engine", "pug");
 app.use("/tasks", tasks);
 
 app.get("/", (req, res) => {
-    res.render("index", { title: "Welcome to Blog App!" });
+    res.render("index", { title: "Welcome to TechSupport!" });
 });
 
 app.get("/api/v1/tasks", (req, res) => {

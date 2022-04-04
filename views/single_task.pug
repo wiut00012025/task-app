@@ -1,11 +1,40 @@
 extends layout.pug 
 
 block content
-    h1= task.topic
-    h2= task.date
-    h2= task.name
-    h2= task.email
-    h2= task.phoneNumber
-    h2= task.description
-    h2= task.solved
-     
+    .row.justify-content-center
+        h2.page-section-heading.text-center.text-uppercase.text-primary Application Details
+        
+        table.table.table-striped.mt-5
+            tr
+                th Name
+                td= task.name 
+            tr 
+                th Date 
+                td= task.date
+            
+            tr
+                th Email
+                td= task.email 
+            tr 
+                th Phone Number 
+                td= task.phoneNumber
+            tr
+                th Issue Topic
+                td= task.topic 
+            tr 
+                th Description 
+                td= task.description
+            tr
+                th Status
+                if task.solved  
+                    td 
+                        a.btn.btn-success(href = "/tasks/changeStatus/"+task.id) Solved 
+                else 
+                    td 
+                        a.btn.btn-warning(href = "/tasks/changeStatus/"+task.id) Unsolved
+
+         
+        p *Press Solve/Unsolve button to change the status of the application
+        .row.float-end.col-6
+            a.btn.btn-danger(href="/tasks/delete/"+task.id) Delete Application
+    
